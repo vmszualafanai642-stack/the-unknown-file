@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Unknown Files</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #050505;
+      color: #e8e8e8;
+      font-family: Georgia, "Times New Roman", serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 700px;
+      padding: 40px 20px;
+    }
+
+    .warning {
+      color: #777;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 4px;
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 10vw, 80px);
+      letter-spacing: 8px;
+      margin: 0;
+      color: #eeeeee;
+      text-shadow: 0 0 20px #444;
+    }
+
+    .line {
+      width: 80px;
+      height: 1px;
+      background: #777;
+      margin: 25px auto;
+    }
+
+    .subtitle {
+      color: #999;
+      font-size: 18px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+
+    .case {
+      border: 1px solid #333;
+      padding: 25px;
+      margin-bottom: 30px;
+      background: #0b0b0b;
+    }
+
+    .case-number {
+      color: #777;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 3px;
+    }
+
+    .case h2 {
+      margin: 12px 0;
+      font-size: 26px;
+    }
+
+    .case p {
+      color: #aaa;
+      line-height: 1.6;
+    }
+
+    button {
+      border: 1px solid #888;
+      background: transparent;
+      color: white;
+      padding: 16px 30px;
+      font-size: 14px;
+      letter-spacing: 3px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #eeeeee;
+      color: #050505;
+    }
+
+    #message {
+      display: none;
+      margin-top: 30px;
+      color: #aaa;
+      line-height: 1.7;
+    }
+
+    footer {
+      margin-top: 60px;
+      color: #444;
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="warning">CLASSIFIED INVESTIGATION DATABASE</div>
+
+    <h1>THE UNKNOWN FILES</h1>
+
+    <div class="line"></div>
+
+    <div class="subtitle">
+      Some mysteries are meant to remain unsolved.
+      <br>
+      Are you ready to investigate?
+    </div>
+
+    <div class="case">
+
+      <div class="case-number">CASE FILE #001</div>
+
+      <h2>The House With No Owner</h2>
+
+      <p>
+        An abandoned house has stood empty for twenty years.
+        Yet every night, at exactly 2:17 AM,
+        a light appears in the upstairs window.
+      </p>
+
+      <p>
+        No one knows who turns it on.
+      </p>
+
+    </div>
+
+    <button onclick="startInvestigation()">
+      START INVESTIGATION
+    </button>
+
+    <div id="message">
+      <p>
+        The investigation has begun...
+      </p>
+
+      <p>
+        <strong>Something is watching.</strong>
+      </p>
+    </div>
+
+    <footer>
+      THE UNKNOWN FILES © 2026
+    </footer>
+
+  </div>
+
+  <script>
+    function startInvestigation() {
+      document.getElementById("message").style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
