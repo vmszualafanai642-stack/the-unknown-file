@@ -1,179 +1,380 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Unknown Files</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Unknown Files</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+* {
+  box-sizing: border-box;
+}
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: #050505;
-      color: #e8e8e8;
-      font-family: Georgia, "Times New Roman", serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
+body {
+  margin: 0;
+  background: #050505;
+  color: #eee;
+  font-family: Georgia, serif;
+}
 
-    .container {
-      width: 90%;
-      max-width: 700px;
-      padding: 40px 20px;
-    }
+header {
+  text-align: center;
+  padding: 45px 20px 25px;
+  border-bottom: 1px solid #222;
+}
 
-    .warning {
-      color: #777;
-      font-family: Arial, sans-serif;
-      font-size: 12px;
-      letter-spacing: 4px;
-      margin-bottom: 25px;
-    }
+.small {
+  color: #777;
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+}
 
-    h1 {
-      font-size: clamp(42px, 10vw, 80px);
-      letter-spacing: 8px;
-      margin: 0;
-      color: #eeeeee;
-      text-shadow: 0 0 20px #444;
-    }
+h1 {
+  font-size: 42px;
+  letter-spacing: 6px;
+  margin: 15px 0;
+}
 
-    .line {
-      width: 80px;
-      height: 1px;
-      background: #777;
-      margin: 25px auto;
-    }
+.container {
+  width: 92%;
+  max-width: 850px;
+  margin: auto;
+  padding: 25px 0 60px;
+}
 
-    .subtitle {
-      color: #999;
-      font-size: 18px;
-      line-height: 1.7;
-      margin-bottom: 40px;
-    }
+.case-box {
+  background: #0b0b0b;
+  border: 1px solid #292929;
+  padding: 25px;
+  margin-bottom: 25px;
+}
 
-    .case {
-      border: 1px solid #333;
-      padding: 25px;
-      margin-bottom: 30px;
-      background: #0b0b0b;
-    }
+h2 {
+  margin-top: 5px;
+}
 
-    .case-number {
-      color: #777;
-      font-family: Arial, sans-serif;
-      font-size: 12px;
-      letter-spacing: 3px;
-    }
+h3 {
+  color: #ddd;
+}
 
-    .case h2 {
-      margin: 12px 0;
-      font-size: 26px;
-    }
+p {
+  color: #aaa;
+  line-height: 1.7;
+}
 
-    .case p {
-      color: #aaa;
-      line-height: 1.6;
-    }
+button {
+  background: #111;
+  color: white;
+  border: 1px solid #555;
+  padding: 13px 18px;
+  margin: 5px;
+  cursor: pointer;
+  font-family: Georgia, serif;
+}
 
-    button {
-      border: 1px solid #888;
-      background: transparent;
-      color: white;
-      padding: 16px 30px;
-      font-size: 14px;
-      letter-spacing: 3px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+button:hover {
+  background: #eee;
+  color: #000;
+}
 
-    button:hover {
-      background: #eeeeee;
-      color: #050505;
-    }
+.panel {
+  display: none;
+}
 
-    #message {
-      display: none;
-      margin-top: 30px;
-      color: #aaa;
-      line-height: 1.7;
-    }
+.panel.active {
+  display: block;
+}
 
-    footer {
-      margin-top: 60px;
-      color: #444;
-      font-family: Arial, sans-serif;
-      font-size: 11px;
-      letter-spacing: 2px;
-    }
-  </style>
+.clue {
+  border-left: 2px solid #555;
+  padding: 12px 15px;
+  margin: 12px 0;
+  background: #101010;
+}
+
+input {
+  background: #080808;
+  color: white;
+  border: 1px solid #555;
+  padding: 13px;
+  width: 100%;
+  max-width: 300px;
+  margin: 10px 0;
+}
+
+.result {
+  padding: 20px;
+  margin-top: 20px;
+  border: 1px solid #444;
+  display: none;
+}
+
+.correct {
+  color: #aaa;
+}
+
+.wrong {
+  color: #aaa;
+}
+
+nav {
+  text-align: center;
+  padding: 10px;
+  border-bottom: 1px solid #222;
+}
+
+footer {
+  text-align: center;
+  color: #444;
+  font: 11px Arial, sans-serif;
+  letter-spacing: 2px;
+  padding: 30px;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="container">
+<header>
+  <div class="small">CLASSIFIED INVESTIGATION DATABASE</div>
+  <h1>THE UNKNOWN FILES</h1>
+  <div class="small">CASE #001</div>
+</header>
 
-    <div class="warning">CLASSIFIED INVESTIGATION DATABASE</div>
+<nav>
+  <button onclick="showPanel('briefing')">BRIEFING</button>
+  <button onclick="showPanel('evidence')">EVIDENCE</button>
+  <button onclick="showPanel('suspects')">SUSPECTS</button>
+  <button onclick="showPanel('puzzle')">PUZZLE</button>
+  <button onclick="showPanel('final')">ACCUSATION</button>
+</nav>
 
-    <h1>THE UNKNOWN FILES</h1>
+<div class="container">
 
-    <div class="line"></div>
+<!-- BRIEFING -->
 
-    <div class="subtitle">
-      Some mysteries are meant to remain unsolved.
-      <br>
-      Are you ready to investigate?
-    </div>
+<section id="briefing" class="panel active">
 
-    <div class="case">
+<div class="case-box">
 
-      <div class="case-number">CASE FILE #001</div>
+<div class="small">CASE FILE #001</div>
 
-      <h2>The House With No Owner</h2>
+<h2>The House With No Owner</h2>
 
-      <p>
-        An abandoned house has stood empty for twenty years.
-        Yet every night, at exactly 2:17 AM,
-        a light appears in the upstairs window.
-      </p>
+<p>
+For twenty years, an old house at the edge of town has been abandoned.
+No family has officially lived there since 2006.
+</p>
 
-      <p>
-        No one knows who turns it on.
-      </p>
+<p>
+But every night at exactly <strong>2:17 AM</strong>,
+the upstairs bedroom light turns on.
+</p>
 
-    </div>
+<p>
+Three people claim they know nothing about the house.
+One of them is lying.
+</p>
 
-    <button onclick="startInvestigation()">
-      START INVESTIGATION
-    </button>
+<h3>Your mission</h3>
 
-    <div id="message">
-      <p>
-        The investigation has begun...
-      </p>
+<p>
+Examine the evidence, investigate the suspects,
+solve the hidden code, and identify the person responsible.
+</p>
 
-      <p>
-        <strong>Something is watching.</strong>
-      </p>
-    </div>
+</div>
 
-    <footer>
-      THE UNKNOWN FILES © 2026
-    </footer>
+</section>
 
-  </div>
 
-  <script>
-    function startInvestigation() {
-      document.getElementById("message").style.display = "block";
-    }
-  </script>
+<!-- EVIDENCE -->
 
-</body>
-</html>
+<section id="evidence" class="panel">
+
+<div class="case-box">
+
+<h2>Evidence Room</h2>
+
+<div class="clue">
+<strong>Evidence #01 — Photograph</strong>
+<p>
+A photograph taken at 2:20 AM shows the upstairs window.
+The light is clearly visible.
+</p>
+</div>
+
+<div class="clue">
+<strong>Evidence #02 — Footprints</strong>
+<p>
+Fresh footprints were found outside the back door.
+They lead toward the house, but none lead away from it.
+</p>
+</div>
+
+<div class="clue">
+<strong>Evidence #03 — Old Newspaper</strong>
+<p>
+A newspaper from 2006 reports that the previous owner
+disappeared without explanation.
+</p>
+</div>
+
+<div class="clue">
+<strong>Evidence #04 — Clock</strong>
+<p>
+An old wall clock inside the house is permanently stopped
+at exactly 2:17.
+</p>
+</div>
+
+<div class="clue">
+<strong>Evidence #05 — Note</strong>
+<p>
+A handwritten note was found underneath the floorboards.
+It contains only three numbers:
+<strong>2 - 1 - 7</strong>
+</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SUSPECTS -->
+
+<section id="suspects" class="panel">
+
+<div class="case-box">
+
+<h2>Suspect Files</h2>
+
+<div class="clue">
+<h3>Suspect A — Daniel Vane</h3>
+<p>
+A former police officer who investigated the disappearance
+in 2006. He claims he has not visited the house since then.
+</p>
+</div>
+
+<div class="clue">
+<h3>Suspect B — Clara Reed</h3>
+<p>
+A journalist researching the original disappearance.
+She says she has never entered the house.
+</p>
+</div>
+
+<div class="clue">
+<h3>Suspect C — Marcus Hale</h3>
+<p>
+The current owner of the land. He says the house has been
+completely empty for twenty years.
+</p>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PUZZLE -->
+
+<section id="puzzle" class="panel">
+
+<div class="case-box">
+
+<h2>Hidden Code</h2>
+
+<p>
+The note found under the floorboards says:
+</p>
+
+<h2>2 - 1 - 7</h2>
+
+<p>
+The clock stopped at 2:17.
+The bedroom light appears at 2:17.
+The note contains 2, 1 and 7.
+</p>
+
+<p>
+Combine the numbers into the three-digit code.
+</p>
+
+<input id="code" type="text" placeholder="Enter code">
+
+<br>
+
+<button onclick="checkCode()">SUBMIT CODE</button>
+
+<div id="codeResult" class="result"></div>
+
+</div>
+
+</section>
+
+
+<!-- FINAL -->
+
+<section id="final" class="panel">
+
+<div class="case-box">
+
+<h2>Final Accusation</h2>
+
+<p>
+You have examined the evidence.
+Who do you believe is responsible?
+</p>
+
+<button onclick="accuse('Daniel')">DANIEL VANE</button>
+<button onclick="accuse('Clara')">CLARA REED</button>
+<button onclick="accuse('Marcus')">MARCUS HALE</button>
+
+<div id="finalResult" class="result"></div>
+
+</div>
+
+</section>
+
+</div>
+
+<footer>
+THE UNKNOWN FILES © 2026
+</footer>
+
+
+<script>
+
+function showPanel(id) {
+
+  const panels = document.querySelectorAll(".panel");
+
+  panels.forEach(function(panel) {
+    panel.classList.remove("active");
+  });
+
+  document.getElementById(id).classList.add("active");
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+
+function checkCode() {
+
+  const code = document.getElementById("code").value.trim();
+  const result = document.getElementById("codeResult");
+
+  result.style.display = "block";
+
+  if (code === "217") {
+
+    result.innerHTML =
+      "<span class='correct'><strong>CODE ACCEPTED.</strong><br><br>" +
+      "The numbers match the time recorded throughout the evidence. "
